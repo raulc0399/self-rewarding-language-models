@@ -1,0 +1,11 @@
+
+# on Windows uncomment the following line
+# -i https://download.pytorch.org/whl/cu121
+torch
+transformers
+accelerate
+bitsandbytes
+peft
+trl
+pandas
+fastparquet
