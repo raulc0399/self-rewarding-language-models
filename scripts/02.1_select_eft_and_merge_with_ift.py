@@ -43,6 +43,11 @@ def filter_and_save(df, threshold, file_path):
     return selected_df
 
 def prepare_data(selected_df, template_file_path):
+    # convert 0 to 1 range to 1 op 5 range
+    def convert_range(x):
+        return int(1 + (x + 0.05) * 4)
+
+
     """Prepare data by modifying prompt and completion fields."""
     file = open(template_file_path, 'r')
     template = file.read()
@@ -51,7 +56,7 @@ def prepare_data(selected_df, template_file_path):
     new_dataset = []
     for index, row in selected_df.iterrows():
         prompt = template.format(prompt=row['prompt_text'], response=row['response_text'])
-        completion = f"Score: {row['quality_score']}"
+        completion = f"Score: {convert_range(row['quality_score'])}"
 
         new_dataset.append({'prompt': prompt, 'completion': completion})
 
