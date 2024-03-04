@@ -18,7 +18,7 @@ if len(sys.argv) != 3:
     exit()
 
 # use ift.jsonl for step 1
-# use ift_and_eft.jsonl for step 2
+# use ift_and_eft.jsonl for step 3
 dataset_file = sys.argv[1]
 output_dir = sys.argv[2]
 
@@ -156,6 +156,7 @@ training_args = TrainingArguments(
     logging_steps=1,
     num_train_epochs=2,
     save_steps=50,
+    max_steps=350
 
     # max_grad_norm=0.3,
     # gradient_checkpointing=True,
