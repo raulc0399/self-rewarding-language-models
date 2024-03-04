@@ -24,7 +24,7 @@ output_dir = sys.argv[2]
 
 # load the training dataset
 dataset = load_dataset("json", data_files={'train': dataset_file})
-dataset = dataset['train']
+dataset = dataset['train'].shuffle()
 
 base_model_name = "mistralai/Mistral-7B-v0.1"
 
