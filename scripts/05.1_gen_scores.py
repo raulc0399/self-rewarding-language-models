@@ -31,7 +31,7 @@ def load_fined_tuned():
     # base_model_name = "raulc0399/mistral-7b-ift-3"
 
     # the m1 model
-    base_model_name = "raulc0399/mistral-7b-m1"
+    base_model_name = "raulc0399/mistral-7b-m1-v1"
 
     bnb_config = get_bnb_config()
 
