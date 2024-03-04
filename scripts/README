@@ -1,0 +1,12 @@
+00_prepare_dataset.py
+01_and_03_sft.py
+02.0_gen_eft_score.py
+02.1_select_eft_and_merge_with_ift.py
+04_gen_prompts.py
+05.1_gen_scores.py
+05.2_gen_preferences_pairs.py
+05.0_gen_responses.py
+
+llm_as_a_judge_prompt_orig.txt
+llm_as_a_judge_prompt.txt
+simple_gen.py
