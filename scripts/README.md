@@ -1,3 +1,5 @@
+**Scripts for training mistral model based on the Self-Rewarding Language Models paper https://arxiv.org/abs/2401.10020**
+
 **00_prepare_dataset.py**\
 takes the ift dataset and saves it in the format for hf sft trainer, keeps 10 for testing
 also splits the eft dataset, keeps 10 for testing
