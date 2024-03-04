@@ -47,7 +47,6 @@ def prepare_data(selected_df, template_file_path):
     def convert_range(x):
         return int(1 + (x + 0.05) * 4)
 
-
     """Prepare data by modifying prompt and completion fields."""
     file = open(template_file_path, 'r')
     template = file.read()
