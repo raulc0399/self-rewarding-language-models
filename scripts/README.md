@@ -42,4 +42,5 @@ the prompt
 **llm_as_a_judge_prompt.txt**\
 was changed to generate responses containint the score at first, in the format that can be post-processed
 
-simple_gen.py
+**simple_gen.py**\
+simple inference on the mistral or fine-tuned models using the ift and eft test datasets
