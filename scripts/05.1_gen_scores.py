@@ -90,7 +90,7 @@ llm_as_a_judge_prompt_template = file.read()
 file.close()
 
 # !! since the eft_selected_prepared_dataset contained the score as float => use it as float here
-pattern = r"[Ss]core: ([0-9]*\.[0-9]{1,2})"
+pattern = r"[Ss]core: ([0-5])"
 for index, row in df.iterrows():
     prompt = row['prompt']
     
@@ -105,7 +105,7 @@ for index, row in df.iterrows():
         answer = do_sample(model, tokenizer, llm_as_a_judge_prompt)
 
         matches = re.findall(pattern, answer)
-        generated_score = float(matches[0]) if matches else -1
+        generated_score = int(matches[0]) if matches else -1
     
         print(f"Answer {answer}")
         print("Found Score: ", generated_score)
