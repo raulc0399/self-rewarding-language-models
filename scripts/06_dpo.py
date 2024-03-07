@@ -27,15 +27,6 @@ dataset = dataset['train'].shuffle(seed=42)
 
 base_model_name = "raulc0399/mistral-7b-m1-v1"
 
-def get_prompt(prompt, tokenizer):
-    prompt_sample = [
-        {"role": "user", "content": prompt}
-    ]
-
-    prompt_for_model = tokenizer.apply_chat_template(prompt_sample, tokenize=False)
-
-    return prompt_for_model
-
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
     bnb_4bit_quant_type="nf4",
@@ -63,7 +54,18 @@ tokenizer = AutoTokenizer.from_pretrained(base_model_name, trust_remote_code=Tru
 tokenizer.pad_token = tokenizer.eos_token
 tokenizer.padding_side = "right"
 
-df['prompt'] = df['prompt'].apply(get_prompt)
+def get_prompt(example, tokenizer):
+    prompt_sample = [
+        {"role": "user", "content": example['prompt']}
+    ]
+
+    prompt_for_model = tokenizer.apply_chat_template(prompt_sample, tokenize=False)
+
+    example['prompt'] = prompt_for_model
+    
+    return example
+
+dataset = dataset.map(get_prompt)
 
 # from https://github.com/mlabonne/llm-course/blob/main/Fine_tune_a_Mistral_7b_model_with_DPO.ipynb
 lora_dropout=0.05
@@ -103,7 +105,7 @@ training_args = TrainingArguments(
     logging_steps=1,
     num_train_epochs=2,
     save_steps=50,
-    max_steps=350
+    max_steps=350,
     
     lr_scheduler_type="cosine",
     optim="paged_adamw_32bit",
