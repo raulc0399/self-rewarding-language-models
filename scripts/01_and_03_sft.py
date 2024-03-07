@@ -14,7 +14,7 @@ from trl import SFTTrainer
 import sys, os
 
 if len(sys.argv) != 3:
-    print("Usage: python sft.py <dataset.json> <results_dir>")
+    print("Usage: python 01_and_03_sft.py <dataset.json> <results_dir>")
     exit()
 
 # use ift.jsonl for step 1
