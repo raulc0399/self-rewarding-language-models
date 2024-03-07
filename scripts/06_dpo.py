@@ -60,8 +60,10 @@ def get_prompt(example, tokenizer):
     ]
 
     prompt_for_model = tokenizer.apply_chat_template(prompt_sample, tokenize=False)
-
     example['prompt'] = prompt_for_model
+
+    example['chosen'] = example['chosen'] + tokenizer.eos_token
+    example['rejected'] = example['rejected'] + tokenizer.eos_token
     
     return example
 
