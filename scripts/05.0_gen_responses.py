@@ -1,3 +1,5 @@
+# uses the m1 model to generate 4 completions for each prompt
+
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 import pandas as pd

@@ -1,3 +1,6 @@
+# goes over each of the 4 completions and keeps only the min and max score
+# these are stores in the format [prompt, chosen, rejected] expected by the dpo trainer
+
 import pandas as pd
 import os
 

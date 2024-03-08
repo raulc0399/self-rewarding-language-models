@@ -1,3 +1,7 @@
+# splits the ift and eft datases into train and tests sets - keeps 10 each
+# the ift dataset is saved in the sfttrainer format ['prompt', 'completion']
+# https://huggingface.co/docs/trl/sft_trainer#dataset-format-support
+
 import pandas as pd
 import os
 
@@ -17,7 +21,6 @@ datasets_dir = "../datasets"
 #     df.to_parquet(os.path.join(datasets_dir, 'ift.parquet'), index=False)
 #     eval_df.to_json(os.path.join(datasets_dir, 'ift_test.jsonl'), index=False, orient="records", lines=True)
 
-# https://huggingface.co/docs/trl/v0.7.11/sft_trainer#dataset-format-support
 def save_as_sfttrainer_format(df):
     df.rename(columns = {'prompt_text': 'prompt', 'response_text': 'completion'}, inplace = True) 
     df = df[['prompt', 'completion']]

@@ -1,3 +1,5 @@
+# for each completion from the previous step, uses m1 to generate a score
+
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 import pandas as pd

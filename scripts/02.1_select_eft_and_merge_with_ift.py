@@ -1,3 +1,8 @@
+# selects from the eft dataset the entries with diff_score less than 0.25 (between the generated score and the score from the eft dataset)
+# prepares the selected entries to be used in the sft training, by setting the prompt to be
+# the llm as a judge prompt and the completion to be the score from the eft dataset
+# the 2 sets are merged and used to generate the m1 model in 01_and_03_sft.py
+
 import pandas as pd
 import os
 

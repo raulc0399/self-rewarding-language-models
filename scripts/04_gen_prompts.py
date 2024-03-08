@@ -1,3 +1,6 @@
+# uses the ift dataset and the model mistralai/Mistral-7B-Instruct-v0.2 to generate prompts
+# uses a 8-shot prompt to generate them
+
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 import pandas as pd
@@ -8,7 +11,7 @@ access_token = ".."
 
 device = "cuda" # the device to load the model onto
 
-num_prompts_to_generate=500
+num_prompts_to_generate=1000
 
 model_id_mistral_instruct = "mistralai/Mistral-7B-Instruct-v0.2"
 model_id_mistral_llama_chat = "meta-llama/Llama-2-13b-chat-hf"

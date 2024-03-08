@@ -1,5 +1,9 @@
 # from https://www.oxen.ai/blog/how-to-run-llama-2-on-cpu-after-fine-tuning-with-lora
 
+# sft training, used in steps 1 and 3
+# step 1 - 00_ift.jsonl
+# step 3 - 02.1_ift_and_eft.jsonl (the merged ift and eft datasets)
+
 from datasets import load_dataset
 import torch
 from transformers import AutoModelForCausalLM, BitsAndBytesConfig, AutoTokenizer, TrainingArguments

@@ -1,3 +1,6 @@
+# uses the ift trained mistral model raulc0399/mistral-7b-ift-3 to generate scores for the eft dataset
+# adds the following fields: generated_answer, generated_score, diff_score (between generated_score and quality_score of the original set)
+
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 import pandas as pd
