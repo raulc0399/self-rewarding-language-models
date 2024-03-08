@@ -95,7 +95,7 @@ model, tokenizer = load_fined_tuned()
 model.eval()
 
 df_prompts = pd.read_json(path_or_buf=prompts_file_path, lines=True)
-df_prompts = df_prompts.sample(100).reset_index(drop=True)
+# df_prompts = df_prompts.sample(100).reset_index(drop=True)
 
 df_prompts['completions'] = [[] for _ in range(df_prompts.shape[0])]
 for index, row in df_prompts.iterrows():
