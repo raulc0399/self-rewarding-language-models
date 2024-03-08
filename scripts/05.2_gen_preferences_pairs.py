@@ -4,9 +4,9 @@ import os
 datasets_dir = "../datasets"
 
 # generated prompts with 4 responses and scores
-generated_prompts_responses_with_scores_file_path = os.path.join(datasets_dir, "generated_prompts_responses_with_scores.jsonl")
+generated_prompts_responses_with_scores_file_path = os.path.join(datasets_dir, "05.1_generated_prompts_responses_with_scores.jsonl")
 
-preferences_pairs_file_path = os.path.join(datasets_dir, "preferences_pairs.jsonl")
+preferences_pairs_file_path = os.path.join(datasets_dir, "05.2_preferences_pairs.jsonl")
 
 df = pd.read_json(path_or_buf=generated_prompts_responses_with_scores_file_path, lines=True)
 

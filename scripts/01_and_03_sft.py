@@ -17,8 +17,8 @@ if len(sys.argv) != 3:
     print("Usage: python 01_and_03_sft.py <dataset.json> <results_dir>")
     exit()
 
-# use ift.jsonl for step 1
-# use ift_and_eft.jsonl for step 3
+# use 00_ift.jsonl for step 1
+# use 02.1_ift_and_eft.jsonl for step 3
 dataset_file = sys.argv[1]
 output_dir = sys.argv[2]
 

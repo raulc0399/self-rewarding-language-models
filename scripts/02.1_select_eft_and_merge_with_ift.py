@@ -5,17 +5,17 @@ import os
 datasets_dir = "../datasets"
 
 # dataset generated from 02_gen_eft_score.py, by asking the ift tuned model to evaluate the completions
-eft_with_generated_score_file_path = os.path.join(datasets_dir, "eft_with_generated_score.jsonl")
+eft_with_generated_score_file_path = os.path.join(datasets_dir, "02.0_eft_with_generated_score.jsonl")
 
 # the set of entries with diff_score less than 0.25 (between the generated score and the score from the eft dataset)
-eft_selected_file_path = os.path.join(datasets_dir, "eft_selected_dataset.jsonl")
+eft_selected_file_path = os.path.join(datasets_dir, "02.1_eft_selected_dataset.jsonl")
 
 # the set of based on previous file, with the prompt and completion fields modified to contain the llm as a judge prompt and the scrore from the eft dataset as completion (will be used for sft training)
-eft_selected_prepared_file_path = os.path.join(datasets_dir, "eft_selected_prepared_dataset.jsonl")
+eft_selected_prepared_file_path = os.path.join(datasets_dir, "02.1_eft_selected_prepared_dataset.jsonl")
 
 # the ift dataset used in 01_and_03_sft.py
-ift_file_path = os.path.join(datasets_dir, "ift.jsonl")
-ift_and_eft_file_path = os.path.join(datasets_dir, "ift_and_eft.jsonl")
+ift_file_path = os.path.join(datasets_dir, "00_ift.jsonl")
+ift_and_eft_file_path = os.path.join(datasets_dir, "02.1_ift_and_eft.jsonl")
 
 def read_jsonl_file(file_path):
     """Read a JSONL file into a pandas DataFrame."""

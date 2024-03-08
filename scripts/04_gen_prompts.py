@@ -17,10 +17,10 @@ model_id_mistral_llama_chat = "meta-llama/Llama-2-13b-chat-hf"
 datasets_dir = "../datasets"
 
 # the ift dataset used in 01_and_03_sft.py
-ift_file_path = os.path.join(datasets_dir, "ift.jsonl")
+ift_file_path = os.path.join(datasets_dir, "00_ift.jsonl")
 
 # location of the generated prompts
-generated_prompts_file_path = os.path.join(datasets_dir, "generated_prompts.jsonl")
+generated_prompts_file_path = os.path.join(datasets_dir, "04_generated_prompts.jsonl")
 
 def read_jsonl_file(file_path):
     """Read a JSONL file into a pandas DataFrame."""

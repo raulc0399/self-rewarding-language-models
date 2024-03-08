@@ -7,10 +7,10 @@ import os
 datasets_dir = "../datasets"
 
 # generated prompts with 4 responses and scores
-generated_prompts_responses_file_path = os.path.join(datasets_dir, "generated_prompts_responses.jsonl")
+generated_prompts_responses_file_path = os.path.join(datasets_dir, "05.0_generated_prompts_responses.jsonl")
 
 # generated prompts with 4 responses and scores
-generated_prompts_responses_with_scores_file_path = os.path.join(datasets_dir, "generated_prompts_responses_with_scores.jsonl")
+generated_prompts_responses_with_scores_file_path = os.path.join(datasets_dir, "05.1_generated_prompts_responses_with_scores.jsonl")
 
 # if using llama
 access_token = ".."

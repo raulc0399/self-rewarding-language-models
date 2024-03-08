@@ -92,8 +92,8 @@ model, tokenizer = load_fined_tuned()
 model.eval()
 
 datasets_dir = "../datasets"
-file_path = os.path.join(datasets_dir, "eft.jsonl")
-output_file_path = os.path.join(datasets_dir, "eft_with_generated_score.jsonl")
+file_path = os.path.join(datasets_dir, "00_eft.jsonl")
+output_file_path = os.path.join(datasets_dir, "02.0_eft_with_generated_score.jsonl")
 
 df = pd.read_json(path_or_buf=file_path, lines=True)
 
