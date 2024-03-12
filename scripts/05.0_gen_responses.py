@@ -69,7 +69,7 @@ def do_sample(model, tokenizer, prompt):
             num_return_sequences=1,
             temperature=0.7,
             top_p=0.9,
-            max_new_tokens=200
+            max_new_tokens=250
         )
     
         print(f"Q: {prompt}:")
