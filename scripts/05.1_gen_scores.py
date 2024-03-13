@@ -91,7 +91,6 @@ file = open('llm_as_a_judge_prompt.txt', 'r')
 llm_as_a_judge_prompt_template = file.read()
 file.close()
 
-# !! since the eft_selected_prepared_dataset contained the score as float => use it as float here
 pattern = r"[Ss]core: ([0-5])"
 for index, row in df.iterrows():
     prompt = row['prompt']
