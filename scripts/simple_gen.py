@@ -6,10 +6,10 @@ import os
 datasets_dir = "../datasets"
 
 # use for simple prompting
-ift_test_file_path = os.path.join(datasets_dir, "ift_test.jsonl")
+ift_test_file_path = os.path.join(datasets_dir, "00_ift_test.jsonl")
 
 # use for llm_as_a_judge_prompt.txt
-eft_test_file_path = os.path.join(datasets_dir, "eft_test.jsonl")
+eft_test_file_path = os.path.join(datasets_dir, "00_eft_test.jsonl")
 
 # if using llama
 access_token = ".."
@@ -49,7 +49,10 @@ def load_fined_tuned():
     # base_model_name = "raulc0399/mistral-7b-ift-3"
 
     # the m1 model
-    base_model_name = "raulc0399/mistral-7b-m1-v1"
+    # base_model_name = "raulc0399/mistral-7b-m1-v1"
+
+    # the m2 model
+    base_model_name = "raulc0399/mistral-7b-m2-dpo"
 
     bnb_config = get_bnb_config()
 
@@ -100,7 +103,6 @@ def do_sample(model, tokenizer, prompt):
 
 # model, tokenizer = load_mistral()
 model, tokenizer = load_fined_tuned()
-
 model.eval()
 
 df_ift_test = pd.read_json(path_or_buf=ift_test_file_path, lines=True)
