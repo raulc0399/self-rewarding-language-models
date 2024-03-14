@@ -43,18 +43,21 @@ base_model = AutoModelForCausalLM.from_pretrained(
 )
 base_model.config.use_cache = False
 
-ref_model = AutoModelForCausalLM.from_pretrained(
-    base_model_name,
-    quantization_config=bnb_config,
-    device_map=device_map,
-    trust_remote_code=True,
-)
+# when running with ref model whis error comes:
+# ValueError: You passed both a ref_model and a peft_config.
+# For training PEFT adapters with DPO there is no need to pass a reference model. Please pass `ref_model=None` in case you want to train PEFT adapters.
+# ref_model = AutoModelForCausalLM.from_pretrained(
+#     base_model_name,
+#     quantization_config=bnb_config,
+#     device_map=device_map,
+#     trust_remote_code=True,
+# )
 
 tokenizer = AutoTokenizer.from_pretrained(base_model_name, trust_remote_code=True)
 tokenizer.pad_token = tokenizer.eos_token
 tokenizer.padding_side = "right"
 
-def get_prompt(example, tokenizer):
+def get_prompt(example):
     prompt_sample = [
         {"role": "user", "content": example['prompt']}
     ]
@@ -65,6 +68,8 @@ def get_prompt(example, tokenizer):
     example['chosen'] = example['chosen'] + tokenizer.eos_token
     example['rejected'] = example['rejected'] + tokenizer.eos_token
     
+    # print(example)
+
     return example
 
 dataset = dataset.map(get_prompt)
@@ -103,7 +108,8 @@ training_args = TrainingArguments(
     learning_rate=learning_rate,
 
     gradient_accumulation_steps=4,
-    warmup_steps=30,
+    gradient_checkpointing=True,
+    warmup_steps=50,
     logging_steps=1,
     num_train_epochs=2,
     save_steps=50,
@@ -119,7 +125,7 @@ training_args = TrainingArguments(
 
 trainer = DPOTrainer(
     base_model,
-    ref_model,
+    ref_model=None,
     args=training_args,
     train_dataset=dataset,
     tokenizer=tokenizer,
@@ -130,6 +136,14 @@ trainer = DPOTrainer(
 )
 
 trainer.train()
+
+# todo: during training getting these warning:
+
+# i guess this is on the base model, need to check. in that case this is fine
+# UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+
+# seems that this can be ignored:
+# Could not estimate the number of tokens of the input, floating-point operations will not be computed
 
 output_dir = os.path.join(output_dir, "final_checkpoint")
 trainer.model.save_pretrained(output_dir)
