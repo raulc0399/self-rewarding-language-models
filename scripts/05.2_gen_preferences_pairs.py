@@ -33,10 +33,10 @@ for index, row in df.iterrows():
             print(f"Skipping row {index} because the chosen and rejected completions are the same")
             del_row = True
             count_rows_to_delete_same_chosen_rejected += 1
-
-        # Keep only the completions with the minimum and maximum scores
-        # if there is a -1 score, take the completion as rejected
-        min_max_completions = {"rejected": sorted_completions[0]["completion"], "chosen": sorted_completions[-1]["completion"]}
+        else:
+            # Keep only the completions with the minimum and maximum scores
+            # if there is a -1 score, take the completion as rejected
+            min_max_completions = {"rejected": sorted_completions[0]["completion"], "chosen": sorted_completions[-1]["completion"]}
     else:
         print(f"Skipping row {index} because there are not enough completions")
         del_row = True
