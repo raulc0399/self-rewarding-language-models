@@ -1,5 +1,6 @@
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+from peft import PeftModelForCausalLM
 import pandas as pd
 import os
 
@@ -37,6 +38,7 @@ def load_mistral():
         device_map="auto",
         token=access_token
     )
+
     tokenizer = AutoTokenizer.from_pretrained(
         base_model_name,
         token=access_token
@@ -68,6 +70,35 @@ def load_fined_tuned():
     )
 
     return model, tokenizer
+
+def load_fined_tuned_dpo_as_adapter():
+    # the m1 model
+    base_model_name = "raulc0399/mistral-7b-m1-v1"
+
+    # the m2 model
+    peft_model_name = "raulc0399/mistral-7b-m2-dpo"
+
+    bnb_config = get_bnb_config()
+
+    base_model = AutoModelForCausalLM.from_pretrained(
+        base_model_name,
+        device_map="auto",
+        quantization_config=bnb_config,
+    )
+
+    peft_model = PeftModelForCausalLM.from_pretrained(
+        base_model,
+        peft_model_name,
+        # quantization_config=bnb_config,
+        device_map="auto",
+    )
+
+    tokenizer = AutoTokenizer.from_pretrained(
+        peft_model_name,
+        device_map="auto",
+    )
+
+    return peft_model, tokenizer
 
 def do_sample(model, tokenizer, prompt):
     with torch.no_grad():
@@ -102,7 +133,8 @@ def do_sample(model, tokenizer, prompt):
 
 
 # model, tokenizer = load_mistral()
-model, tokenizer = load_fined_tuned()
+# model, tokenizer = load_fined_tuned()
+model, tokenizer = load_fined_tuned_dpo_as_adapter()
 model.eval()
 
 df_ift_test = pd.read_json(path_or_buf=ift_test_file_path, lines=True)
